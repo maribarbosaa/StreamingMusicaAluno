@@ -7,6 +7,3 @@ Aplicação simples de streaming de música desenvolvida com **Programação Ori
 * **Musica**: dados de uma música
 * **Playlist**: coleção de músicas
 * **Usuario**: gerenciamento de playlists
-
-# Conceitos
-POO, classes e objetos, `this`, `ArrayList` e lógica básica de programação.
