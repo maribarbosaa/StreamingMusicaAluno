@@ -2,15 +2,36 @@ import java.util.ArrayList;
 
 class Playlist {
 
-    String nome;
-    ArrayList<Musica> musicas = new ArrayList<>();
+    private String nome;
+    private ArrayList<Musica> musicas;
 
-    void adicionarMusica(Musica musica) {
-        musicas.add(musica);
-        System.out.println("Música adicionada à playlist!");
+    // Construtor
+    public Playlist(String nome) {
+        setNome(nome);
+        this.musicas = new ArrayList<>();
     }
 
-    void removerMusica(int indice) {
+    // Getter
+    public String getNome() { return nome; }
+
+    // Setter com validação
+    public void setNome(String nome) {
+        if (nome == null || nome.trim().isEmpty()) {
+            throw new IllegalArgumentException("Nome da playlist inválido.");
+        }
+        this.nome = nome.trim();
+    }
+
+    public void adicionarMusica(Musica musica) {
+        if (musica == null) {
+            System.out.println("Música inválida.");
+            return;
+        }
+        musicas.add(musica);
+        System.out.println("Música adicionada!");
+    }
+
+    public void removerMusica(int indice) {
         if (indice >= 0 && indice < musicas.size()) {
             musicas.remove(indice);
             System.out.println("Música removida!");
@@ -19,7 +40,7 @@ class Playlist {
         }
     }
 
-    void listarMusicas() {
+    public void listarMusicas() {
         if (musicas.isEmpty()) {
             System.out.println("Playlist vazia.");
             return;
@@ -31,15 +52,15 @@ class Playlist {
         }
     }
 
-    int getDuracaoTotal() {
+    public int getDuracaoTotal() {
         int total = 0;
         for (Musica m : musicas) {
-            total += m.duracaoSegundos;
+            total += m.getDuracaoSegundos();
         }
         return total;
     }
 
-    int getQuantidadeMusicas() {
+    public int getQuantidadeMusicas() {
         return musicas.size();
     }
 }

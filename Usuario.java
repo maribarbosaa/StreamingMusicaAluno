@@ -2,31 +2,51 @@ import java.util.ArrayList;
 
 class Usuario {
 
-    String nome;
-    ArrayList<Playlist> playlists = new ArrayList<>();
+    private String nome;
+    private ArrayList<Playlist> playlists;
 
-    void criarPlaylist(String nome) {
-        Playlist p = new Playlist();
-        p.nome = nome;
-        playlists.add(p);
-        System.out.println("Playlist criada!");
+    // Construtor
+    public Usuario(String nome) {
+        setNome(nome);
+        this.playlists = new ArrayList<>();
     }
 
-    Playlist getPlaylist(int indice) {
+    // Getter
+    public String getNome() { return nome; }
+
+    // Setter com validação
+    public void setNome(String nome) {
+        if (nome == null || nome.trim().isEmpty()) {
+            throw new IllegalArgumentException("Nome inválido.");
+        }
+        this.nome = nome.trim();
+    }
+
+    public void criarPlaylist(String nome) {
+        try {
+            Playlist p = new Playlist(nome);
+            playlists.add(p);
+            System.out.println("Playlist criada!");
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public Playlist getPlaylist(int indice) {
         if (indice >= 0 && indice < playlists.size()) {
             return playlists.get(indice);
         }
         return null;
     }
 
-    void listarPlaylists() {
+    public void listarPlaylists() {
         if (playlists.isEmpty()) {
             System.out.println("Nenhuma playlist criada.");
             return;
         }
 
         for (int i = 0; i < playlists.size(); i++) {
-            System.out.println((i + 1) + ". " + playlists.get(i).nome);
+            System.out.println((i + 1) + ". " + playlists.get(i).getNome());
         }
     }
 }
