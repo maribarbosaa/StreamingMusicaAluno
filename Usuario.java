@@ -1,52 +1,33 @@
 import java.util.ArrayList;
 
-class Usuario {
+public class Usuario {
+    protected String nome;
+    protected String email;
+    protected ArrayList<Playlist> playlists;
+    protected ArrayList<Musica> historicoReproducao;
 
-    private String nome;
-    private ArrayList<Playlist> playlists;
-
-    // Construtor
-    public Usuario(String nome) {
-        setNome(nome);
+    public Usuario(String nome, String email) {
+        this.nome = nome;
+        this.email = email;
         this.playlists = new ArrayList<>();
+        this.historicoReproducao = new ArrayList<>();
     }
 
-    // Getter
-    public String getNome() { return nome; }
+    public void reproduzirMusica(Musica musica) {
+        System.out.println("Reproduzindo: " + musica.getTitulo());
+        historicoReproducao.add(musica);
+    }
 
-    // Setter com validação
-    public void setNome(String nome) {
-        if (nome == null || nome.trim().isEmpty()) {
-            throw new IllegalArgumentException("Nome inválido.");
+    public void exibirHistorico() {
+        System.out.println("\n--- HISTÓRICO ---");
+        for (Musica m : historicoReproducao) {
+            m.exibir();
         }
-        this.nome = nome.trim();
     }
 
     public void criarPlaylist(String nome) {
-        try {
-            Playlist p = new Playlist(nome);
-            playlists.add(p);
-            System.out.println("Playlist criada!");
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    public Playlist getPlaylist(int indice) {
-        if (indice >= 0 && indice < playlists.size()) {
-            return playlists.get(indice);
-        }
-        return null;
-    }
-
-    public void listarPlaylists() {
-        if (playlists.isEmpty()) {
-            System.out.println("Nenhuma playlist criada.");
-            return;
-        }
-
-        for (int i = 0; i < playlists.size(); i++) {
-            System.out.println((i + 1) + ". " + playlists.get(i).getNome());
-        }
+        Playlist p = new Playlist(nome);
+        playlists.add(p);
+        System.out.println("Playlist criada!");
     }
 }
