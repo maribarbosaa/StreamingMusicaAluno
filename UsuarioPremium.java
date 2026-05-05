@@ -13,29 +13,15 @@ public class UsuarioPremium extends Usuario {
 
     @Override
     public void reproduzirMusica(Musica musica) {
-        System.out.println("ALTA QUALIDADE: " + musica.getTitulo());
-        historicoReproducao.add(musica);
+        System.out.println(" Premium sem anúncios!");
+        super.reproduzirMusica(musica);
     }
 
-    public void baixarMusica(Musica musica) {
-        if (!musicasBaixadas.contains(musica)) {
-            musicasBaixadas.add(musica);
-            System.out.println("⬇Música baixada!");
-        } else {
-            System.out.println("Já está baixada!");
-        }
+    public String getPlano() {
+        return plano;
     }
 
-    public void listarMusicasBaixadas() {
-        System.out.println("\n--- DOWNLOADS ---");
-
-        if (musicasBaixadas.isEmpty()) {
-            System.out.println("Nenhuma música.");
-            return;
-        }
-
-        for (Musica m : musicasBaixadas) {
-            m.exibir();
-        }
+    public ArrayList<Musica> getMusicasBaixadas() {
+        return musicasBaixadas;
     }
 }

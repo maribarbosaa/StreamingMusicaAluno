@@ -1,11 +1,14 @@
+import java.util.ArrayList;
+
 public class UsuarioFree extends Usuario {
 
-    private static final int MAX_PLAYLISTS = 3;
     private int contadorReproducoes;
+    private ArrayList<Playlist> playlists;
 
     public UsuarioFree(String nome, String email) {
         super(nome, email);
         this.contadorReproducoes = 0;
+        this.playlists = new ArrayList<>();
     }
 
     @Override
@@ -19,18 +22,12 @@ public class UsuarioFree extends Usuario {
         super.reproduzirMusica(musica);
     }
 
-    @Override
-    public void criarPlaylist(String nome) {
-        if (playlists.size() >= MAX_PLAYLISTS) {
-            System.out.println("Limite de playlists atingido!");
-            System.out.println("Assine Premium!");
-            return;
-        }
-
-        super.criarPlaylist(nome);
+    private void exibirAnuncio() {
+        System.out.println("Anúncio sendo exibido...");
+        StreamingMusicaAluno.anunciosExibidos++;
     }
 
-    private void exibirAnuncio() {
-        System.out.println("\n ANÚNCIO: Assine Premium!");
+    public ArrayList<Playlist> getPlaylists() {
+        return playlists;
     }
 }

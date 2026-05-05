@@ -3,31 +3,31 @@ import java.util.ArrayList;
 public class Usuario {
     protected String nome;
     protected String email;
-    protected ArrayList<Playlist> playlists;
-    protected ArrayList<Musica> historicoReproducao;
+    protected int reproducoes;
 
     public Usuario(String nome, String email) {
         this.nome = nome;
+        validarEmail(email);
         this.email = email;
-        this.playlists = new ArrayList<>();
-        this.historicoReproducao = new ArrayList<>();
+        this.reproducoes = 0;
     }
 
     public void reproduzirMusica(Musica musica) {
-        System.out.println("Reproduzindo: " + musica.getTitulo());
-        historicoReproducao.add(musica);
+        reproducoes++;
+        System.out.println(nome + " está ouvindo: " + musica.getTitulo());
     }
 
-    public void exibirHistorico() {
-        System.out.println("\n--- HISTÓRICO ---");
-        for (Musica m : historicoReproducao) {
-            m.exibir();
+    public final void validarEmail(String email) {
+        if (!email.contains("@")) {
+            throw new IllegalArgumentException("Email inválido!");
         }
     }
 
-    public void criarPlaylist(String nome) {
-        Playlist p = new Playlist(nome);
-        playlists.add(p);
-        System.out.println("Playlist criada!");
+    public String getNome() {
+        return nome;
+    }
+
+    public int getReproducoes() {
+        return reproducoes;
     }
 }
