@@ -1,28 +1,29 @@
--- 🎵 Sistema de Streaming de Música
+🎵 Sistema de Streaming de Música
 
-Sistema de streaming de música desenvolvido em Java, aplicando os conceitos de Programação Orientada a Objetos (POO) com interfaces, herança, polimorfismo e encapsulamento.
+Sistema de streaming de música desenvolvido em Java com foco na aplicação dos principais conceitos de Programação Orientada a Objetos (POO), utilizando herança, interfaces, polimorfismo, encapsulamento e organização em pacotes.
 
--- Funcionalidades
-
-*Cadastro e gerenciamento de usuários* — criação de contas Free e Premium
-*Sistema de login* — troca de usuário logado durante a execução
-*Reprodução de músicas* — com comportamento diferente para Free (com anúncios) e Premium (sem anúncios)
-*Sistema de playlists* — playlists automáticas (Top, Recentes, Recomendadas) e personalizadas
-*Sistema de downloads* — exclusivo para usuários Premium, com baixar, remover e listar músicas
-*Histórico de reprodução* — cada usuário mantém seu histórico de músicas ouvidas
-*Estatísticas e relatórios*— total de usuários, reproduções por tipo e anúncios exibidos
-
-
--- Arquitetura
-*Pacotes*
-
-Pacotes
+🚀 Funcionalidades
+Cadastro e gerenciamento de usuários Free e Premium
+Sistema de login com troca de usuário durante a execução
+Reprodução de músicas com comportamentos diferentes para cada tipo de usuário:
+Usuário Free → reprodução com anúncios
+Usuário Premium → reprodução sem anúncios
+Criação e gerenciamento de playlists
+Playlists automáticas
+Playlists personalizadas
+Sistema de downloads exclusivo para usuários Premium
+Histórico de reprodução individual por usuário
+Estatísticas e relatórios do sistema
+Total de usuários
+Quantidade de reproduções
+Total de anúncios exibidos
+📂 Estrutura do Projeto
 src/
 └── br/
     └── com/
         └── streaming/
-            ├── modelo/         → Classes de domínio (entidades)
-            │   ├── ItemReproducao.java      (classe abstrata)
+            ├── modelo/
+            │   ├── ItemReproducao.java
             │   ├── Musica.java
             │   ├── Playlist.java
             │   ├── PlaylistAutomatica.java
@@ -30,67 +31,66 @@ src/
             │   ├── Usuario.java
             │   ├── UsuarioFree.java
             │   └── UsuarioPremium.java
-            ├── servico/        → Interfaces e serviços de comportamento
-            │   ├── Reproduzivel.java        (interface)
-            │   ├── Baixavel.java            (interface)
+            │
+            ├── servico/
+            │   ├── Reproduzivel.java
+            │   ├── Baixavel.java
             │   └── GeradorRecomendacoes.java
-            ├── util/           → Classes utilitárias
+            │
+            ├── util/
             │   ├── FormatadorTempo.java
             │   └── Validador.java
-            └── principal/      → Ponto de entrada
+            │
+            └── principal/
                 └── StreamingMusicaAluno.java
-                └── README.md
+🧩 Interfaces Implementadas
+Interface	Métodos	Implementada em
+Reproduzivel	reproduzir(), pausar(), parar(), getDuracaoTotal()	Musica, Playlist
+Baixavel	baixar(), removerDownload(), estaBaixada(), getTamanhoBaixados()	UsuarioPremium
+🛠️ Classes Utilitárias
+Classe	Responsabilidade
+FormatadorTempo	Conversão de tempo para formatos como mm:ss e exibição formatada
+Validador	Validação de email, nome, título e duração
+GeradorRecomendacoes	Geração de recomendações com base no histórico do usuário
+📚 Conceitos de POO Aplicados
+🔒 Encapsulamento
 
+Utilização de atributos privados/protected com acesso controlado por getters e setters.
 
-- Interfaces implementadas
-Interface            Métodos                                                            Implementada em
-Reproduzivel        reproduzir(), pausar(), parar(), getDuracaoTotal()                  Musica, Playlist
-Baixavel            baixar(), removerDownload(), estaBaixada(), getTamanhoBaixados()    UsuarioPremium
+🧬 Herança
+UsuarioFree e UsuarioPremium herdam de Usuario
+PlaylistAutomatica e PlaylistPersonalizada herdam de Playlist
+🔄 Polimorfismo
 
+Sobrescrita de métodos e tratamento uniforme de usuários através de listas polimórficas.
 
-- Classes utilitárias
-Classe                    Responsabilidade
-FormatadorTempo           Converte segundos para mm:ss, por extenso e formato de playlist
-Validador                 Valida email, nome, título e duração com tratamento de exceções
-GeradorRecomendacoes      Sugere músicas não ouvidas com base no histórico do usuário
+📑 Interfaces
 
+As interfaces Reproduzivel e Baixavel definem contratos de comportamento para diferentes classes.
 
+🧱 Classes Abstratas
 
--- Conceitos de POO aplicados
+Uso de classes base para especializações de playlists e itens de reprodução.
 
-*Encapsulamento* — atributos privados/protected com getters
-*Herança* — UsuarioFree e UsuarioPremium estendem Usuario; PlaylistAutomatica e PlaylistPersonalizada estendem Playlist
-*Polimorfismo* — reproduzirMusica() sobrescrito nas subclasses; lista de Usuario trata Free e Premium de forma uniforme
-*Interfaces* — Reproduzivel e Baixavel definem contratos de comportamento
-*Classes abstratas* — hierarquia de Playlist como base para especializações
-*@Override* — métodos sobrescritos explicitamente marcados
+✅ Sobrescrita de Métodos
 
+Utilização da anotação @Override para sobrescrita explícita de métodos.
 
--- Como Executar
+▶️ Como Executar
 Pré-requisitos
-
 Java JDK 11 ou superior
-
--  Compilação
-
-bash# A partir da raiz do projeto
+Compilação
 javac -d out src/br/com/streaming/servico/*.java src/br/com/streaming/modelo/*.java src/br/com/streaming/principal/*.java
-
-- Execução
-bashjava -cp out br.com.streaming.principal.StreamingMusicaAluno
-
-
--- Autor
-
-Nome: Mariana Moreira Barbosa
+Execução
+java -cp out br.com.streaming.principal.StreamingMusicaAluno
+👩‍💻 Autora
+Mariana Moreira Barbosa
 RA: 42880726
-
-
--- Histórico de Checkpoints 
-*Checkpoint*  *Conteúdo*
-CP 1          Fundamentos de Java — variáveis, tipos, operadores
-CP 2          Estruturas de controle — if, switch, loops
-CP 3          Orientação a Objetos — classes, objetos, construtores
-CP 4          Herança e polimorfismo
-CP 5          Coleções e tratamento de exceções
-CP 6          Interfaces, pacotes e finalização do sistema
+📌 Histórico de Checkpoints
+Checkpoint	Conteúdo
+CP1	Fundamentos de Java — variáveis, tipos e operadores
+CP2	Estruturas de controle — if, switch e loops
+CP3	Orientação a Objetos — classes, objetos e construtores
+CP4	Herança e polimorfismo
+CP5	Coleções e tratamento de exceções
+CP6	Interfaces, pacotes e finalização do sistema
