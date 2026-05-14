@@ -1,8 +1,8 @@
-## 🎵 Sistema de Streaming de Música
+# 🎵 Sistema de Streaming de Música
 
 Sistema de streaming de música desenvolvido em Java, aplicando os conceitos de Programação Orientada a Objetos (POO) com interfaces, herança, polimorfismo e encapsulamento.
 
-# Funcionalidades
+## Funcionalidades
 
 **Cadastro e gerenciamento de usuários** — criação de contas Free e Premium
 **Sistema de login** — troca de usuário logado durante a execução
@@ -13,7 +13,7 @@ Sistema de streaming de música desenvolvido em Java, aplicando os conceitos de 
 **Estatísticas e relatórios**— total de usuários, reproduções por tipo e anúncios exibidos
 
 
-# Arquitetura
+## Arquitetura
 **Pacotes**
 
 Pacotes
@@ -42,13 +42,13 @@ src/
                 └── README.md
 
 
-#  Interfaces implementadas
+##  Interfaces implementadas
 Interface            Métodos                                                            Implementada em
 Reproduzivel        reproduzir(), pausar(), parar(), getDuracaoTotal()                  Musica, Playlist
 Baixavel            baixar(), removerDownload(), estaBaixada(), getTamanhoBaixados()    UsuarioPremium
 
 
-# Classes utilitárias
+## Classes utilitárias
 Classe                    Responsabilidade
 FormatadorTempo           Converte segundos para mm:ss, por extenso e formato de playlist
 Validador                 Valida email, nome, título e duração com tratamento de exceções
@@ -56,7 +56,7 @@ GeradorRecomendacoes      Sugere músicas não ouvidas com base no histórico do
 
 
 
-# Conceitos de POO aplicados
+## Conceitos de POO aplicados
 
 *Encapsulamento* — atributos privados/protected com getters
 *Herança* — UsuarioFree e UsuarioPremium estendem Usuario; PlaylistAutomatica e PlaylistPersonalizada estendem Playlist
@@ -66,27 +66,27 @@ GeradorRecomendacoes      Sugere músicas não ouvidas com base no histórico do
 *@Override* — métodos sobrescritos explicitamente marcados
 
 
-# Como Executar
+## Como Executar
 Pré-requisitos
 
 Java JDK 11 ou superior
 
-#  Compilação
+##  Compilação
 
 bash# A partir da raiz do projeto
 javac -d out src/br/com/streaming/servico/*.java src/br/com/streaming/modelo/*.java src/br/com/streaming/principal/*.java
 
-# Execução
+## Execução
 bashjava -cp out br.com.streaming.principal.StreamingMusicaAluno
 
 
-# Autor
+## Autor
 
 Nome: Mariana Moreira Barbosa
 RA: 42880726
 
 
-# Histórico de Checkpoints 
+## Histórico de Checkpoints 
 **Checkpoint**  **Conteúdo**
 CP 1          Fundamentos de Java — variáveis, tipos, operadores
 CP 2          Estruturas de controle — if, switch, loops
